@@ -11,7 +11,7 @@
 <body>
 
   <div class="mentop" id="navigation_menu" </div>
-    <img class="logo" src="images/logo.png" />
+    <img class="logo" src="images/Logo.png" />
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="homelab.html">Homelab</a></li>
@@ -29,7 +29,7 @@
         <h1>VPN up and Running</h1>
 
         <p>I have had the need for a VPN server for a while, and wanted to try to tackle that next as it would make managing my network remotely about 1000 times easier. So after about 3 months of wandering the internet, and hours of trying to get one up
-          and running I finally did it.</p><a href="https://i.imgur.com/Nex6xU4.jpg" target="_blank"><img src="images/img_0008.jpg" class="img1"></a>I spent about 3 months on and off looking at how to build a VPN server, which VPN service to use, if a VPN would actually be of benefit to me, would a VPN be a better solution than Teamviewer. I came to the
+          and running I finally did it.</p><a href="https://i.imgur.com/Nex6xU4.jpg" target="_blank"><img src="images/IMG_0008.jpg" class="img1"></a>I spent about 3 months on and off looking at how to build a VPN server, which VPN service to use, if a VPN would actually be of benefit to me, would a VPN be a better solution than Teamviewer. I came to the
         conclusion that a VPN is indeed the best solution for my needs, and I can avoid getting yelled at by Teamviewer for using it to connect to my computers at home from work (an enterprise environment).</br>
         </br>
 
@@ -40,7 +40,7 @@
             other than a VPN was what was enabling his connection to home.</br>
             <p>I spent my lunch hour looking at IPSec VPNs and how to get one running on a Debian server. I had a few unregistered Debian VMs ready to go for this very purpose (and the yet to be rebuilt Plex server). I fired it up, and followed the guide from
               here.
-            </p><a href="https://i.imgur.com/55tmRdV.jpg" target="_blank"><img src="images/img_0009.jpg" class="img2"></a>The installation was extremely straight forward. I SSH’d into the server and then copied and pasted the lines from the guide.</p>What the guide didn’t inform me of was the ports to forward on my router. So I check the IPSec log and found
+            </p><a href="https://i.imgur.com/55tmRdV.jpg" target="_blank"><img src="images/IMG_0009.jpg" class="img2"></a>The installation was extremely straight forward. I SSH’d into the server and then copied and pasted the lines from the guide.</p>What the guide didn’t inform me of was the ports to forward on my router. So I check the IPSec log and found
           that it was listening on ports 500 and 4500 so I made sure to forward those ports (UDP). A Google search would have given me the same answer but I am trying to learn Linux better and figured I would spend sometime looking at logs.</br> <p>The command
           for that by the way is:<code> grep pluto /var/log/auth.log</code></p>
           <p> My initial mistake on my laptop was selecting the incorrect VPN type. I went with Cisco IPSec instead of L2TP over IPSec which caused some confusion for a bit. However, once I figured that out I shared my phones connection with my laptop via bluetooth,
@@ -66,12 +66,12 @@
         <p>Take Demologos (Check out my post on my current setup for the specs of this and all my other machines!) and convert it into a FreeNAS box. Use the 2 pairs of Mellanox 10GB NICs as dedicated iSCSI connections between Demologos and Jedha (ESXi box).</p>
 
         <span id="more_span_2" class="hidden_article">
-              <a href="https://i.imgur.com/PVlpska.jpg" target="_blank" alt="NAS storage"><img src="images/img_0559.jpg" class="img3"></a>
+              <a href="https://i.imgur.com/PVlpska.jpg" target="_blank" alt="NAS storage"><img src="images/IMG_0559.jpg" class="img3"></a>
               <p>Store my VMs and media on the FreeNAS Box. I will eventually upgrade the storage in the storage server with new NAS Drives, and a LSI 9211-8i HBA card, but thats a ~$1500 investment I cannot afford right now (Depending on the brand of drives).</p>
               <p>My first priority is to ensure the connection from the VM Host to the Storage server is fast, reliable, and redundant. After I test the ever-loving crap out of that I will make the full switch from my current setup.</p>
               <p>For my 3 backup copies, I plan to backup my VM Host to my gaming rig, FreeNAS box, and the coming-soon backup server.</p>
               <p>For the two types of media, I plan to setup an additional physical machine strictly as a backup server. Before that, I will be burning data to discs. I’m looking into getting some dual-layer BluRays and a BluRay burner.</p>
-              <a href="https://i.imgur.com/c429ySc.jpg" target="_blank" alt="xserve storage"><img src="images/img_0589.jpg" class="img4"></a>
+              <a href="https://i.imgur.com/c429ySc.jpg" target="_blank" alt="xserve storage"><img src="images/IMG_0589.jpg" class="img4"></a>
               <p>For my offsite backups, my work subscribes to Googles’ GSuite, and with that we get virtually unlimited space for Google Drive. I will only be keeping a backup of the mission critical data there, things like VMs, Bi-weekly backups of my work laptop, my girlfriends laptop, and my gaming rig, website themes and media, Adobe CC Data, etc. Media won’t be stored here as I have far too much.</p>
               <p>I will be documenting the installation of the NICs and their configuration, as well as trying to screen capture me setting up FreeNAS, ESXi, and the iSCSI connection. There are sure to be people out there (even on /r/Homelab) who want to set something up like this for as cheap as possible, but can’t find a video that walks them through the process.</p>
             </span>
@@ -165,7 +165,7 @@
     <footer>
       <div class="footer" id="footer">
         <a href="https://github.com/Kirkenjerk">
-          <p><img class="imgfooter" src="images/github.svg"></img>
+          <p><img class="imgfooter" src="images/Github.svg"></img>
           </p>
         </a>
         <p>Ryeley Kuykendall &copy; 2017, P.O. Box 12, Troy, NY, 12180. All rights reserved.</p>
