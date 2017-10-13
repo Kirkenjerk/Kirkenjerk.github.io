@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="homelab.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Kirkenjerk.com/homelab</title>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+
+  <div class="mentop" id="navigation_menu" </div>
+    <img class="logo" src="images/logo.png" />
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="homelab.html">Homelab</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+
+
+  <section>
+    <div class="articlecontainer" id="articlecontainer">
+
+      <div class="article" id="vpn">
+        <h1>VPN up and Running</h1>
+
+        <p>I have had the need for a VPN server for a while, and wanted to try to tackle that next as it would make managing my network remotely about 1000 times easier. So after about 3 months of wandering the internet, and hours of trying to get one up
+          and running I finally did it.</p><a href="https://i.imgur.com/Nex6xU4.jpg" target="_blank"><img src="images/img_0008.jpg" class="img1"></a>I spent about 3 months on and off looking at how to build a VPN server, which VPN service to use, if a VPN would actually be of benefit to me, would a VPN be a better solution than Teamviewer. I came to the
+        conclusion that a VPN is indeed the best solution for my needs, and I can avoid getting yelled at by Teamviewer for using it to connect to my computers at home from work (an enterprise environment).</br>
+        </br>
+
+        <span id="more_span_1" class="hidden_article">
+          <p>Initially, OpenVPN was the most obvious choice. I had spent a while looking at videos on YouTube and reading forum posts about setting it up. Then I came back from vacation today. I was casually talking with my coworker (the very same who wrote
+            the DDNS Script and his site is backup and running here) and he was showing me his Philips Hue setup at home, and how well it integrates with Siri. What he know was that I was paying attention to his computer screen and trying to figure out
+            how he was connected to his homes’ ESXi host from work. I was confused as to why you would have something like that facing outward. He then told me he was using an IPSec VPN. My face turned red pretty quickly for assuming something anything
+            other than a VPN was what was enabling his connection to home.</br>
+            <p>I spent my lunch hour looking at IPSec VPNs and how to get one running on a Debian server. I had a few unregistered Debian VMs ready to go for this very purpose (and the yet to be rebuilt Plex server). I fired it up, and followed the guide from
+              here.
+            </p><a href="https://i.imgur.com/55tmRdV.jpg" target="_blank"><img src="images/img_0009.jpg" class="img2"></a>The installation was extremely straight forward. I SSH’d into the server and then copied and pasted the lines from the guide.</p>What the guide didn’t inform me of was the ports to forward on my router. So I check the IPSec log and found
+          that it was listening on ports 500 and 4500 so I made sure to forward those ports (UDP). A Google search would have given me the same answer but I am trying to learn Linux better and figured I would spend sometime looking at logs.</br> <p>The command
+          for that by the way is:<code> grep pluto /var/log/auth.log</code></p>
+          <p> My initial mistake on my laptop was selecting the incorrect VPN type. I went with Cisco IPSec instead of L2TP over IPSec which caused some confusion for a bit. However, once I figured that out I shared my phones connection with my laptop via bluetooth,
+            connected the VPN, and pinged every server I had. I disconnected the VPN and tried pinging again which, as expected, failed. I wanted to use a domain address instead of an IP address when connecting to the VPN. I created a subdomain from my
+            CloudFlare account, vpn.kirkenjerk.us, and made sure the cloud was Grey and not orange. Then I edited the ipsec.conf file located in /etc/ipsec.conf. Under the Conn Shared section look for “leftid=” and then enter your domain name after the
+            equals sign, and remove the quotes.</br>
+            <p> On my mac I created a new VPN connection, used Cisco IPSec and entered in vpn.kirkenjerk.us, my username, my password, and the PSK I created. I connected to the VPN and it worked flawlessly.
+            </p>
+
+          </span>
+        <button id="vpn_read_more" onclick="hideShowArticle('more_span_1', this.id);">Read More</button>
+      </div>
+
+
+      </br>
+      </br>
+
+      <div class="article" id="storage">
+        <h1>Setting up Storage</h1>
+        <p>Before I get around to the expensive task of upgrading the hardware of all my machines, I think its important that I setup a proper storage solution for my home. As mentioned in previous posts I am trying to mimic an enterprise environment; specifically
+          I want to incorporate the 3-2-1 rule. For the uninitiated (which was me about 2 days ago) the 3-2-1 rule stands for 3 copies of your data, 2 types of media, and 1 backup copy offsite (Thanks Veeam!).</p>
+        <p>My plan is as follows:</p>
+        <p>Take Demologos (Check out my post on my current setup for the specs of this and all my other machines!) and convert it into a FreeNAS box. Use the 2 pairs of Mellanox 10GB NICs as dedicated iSCSI connections between Demologos and Jedha (ESXi box).</p>
+
+        <span id="more_span_2" class="hidden_article">
+              <a href="https://i.imgur.com/PVlpska.jpg" target="_blank" alt="NAS storage"><img src="images/img_0559.jpg" class="img3"></a>
+              <p>Store my VMs and media on the FreeNAS Box. I will eventually upgrade the storage in the storage server with new NAS Drives, and a LSI 9211-8i HBA card, but thats a ~$1500 investment I cannot afford right now (Depending on the brand of drives).</p>
+              <p>My first priority is to ensure the connection from the VM Host to the Storage server is fast, reliable, and redundant. After I test the ever-loving crap out of that I will make the full switch from my current setup.</p>
+              <p>For my 3 backup copies, I plan to backup my VM Host to my gaming rig, FreeNAS box, and the coming-soon backup server.</p>
+              <p>For the two types of media, I plan to setup an additional physical machine strictly as a backup server. Before that, I will be burning data to discs. I’m looking into getting some dual-layer BluRays and a BluRay burner.</p>
+              <a href="https://i.imgur.com/c429ySc.jpg" target="_blank" alt="xserve storage"><img src="images/img_0589.jpg" class="img4"></a>
+              <p>For my offsite backups, my work subscribes to Googles’ GSuite, and with that we get virtually unlimited space for Google Drive. I will only be keeping a backup of the mission critical data there, things like VMs, Bi-weekly backups of my work laptop, my girlfriends laptop, and my gaming rig, website themes and media, Adobe CC Data, etc. Media won’t be stored here as I have far too much.</p>
+              <p>I will be documenting the installation of the NICs and their configuration, as well as trying to screen capture me setting up FreeNAS, ESXi, and the iSCSI connection. There are sure to be people out there (even on /r/Homelab) who want to set something up like this for as cheap as possible, but can’t find a video that walks them through the process.</p>
+            </span>
+          </br>
+        <button id="storage_read_more" onclick="hideShowArticle('more_span_2', this.id);">Read More</button>
+      </div>
+
+    </div>
+  </section>
+
+  </br>
+  </br>
+
+  <section>
+    <div class="cstitle">
+      <h1>Current Servers</h1>
+    </div>
+    <div class="table" id="table">
+      <table>
+        <tr>
+          <th>Manufacturer/OS</th>
+          <th>Name</th>
+          <th>Use case</th>
+          <th>Hardware</th>
+        </tr>
+        <tr>
+          <td>Windows 10</td>
+          <td>Cronos</td>
+          <td>
+            <p>Gaming Desktop</p>
+            <p>All purpose machine</p>
+          </td>
+          <td>
+            <p>i7 4790K</p>
+            <p> 16GB DDR3</p>
+            <p>850Evo 500GB SSD</p>
+            <p> EVGA 750P2 PSU</p>
+            <p>EVGA GTX 980TI FTW</p>
+          </td>
+        </tr>
+        <tr>
+          <td>ESXi 6.0</td>
+          <td>Jedha</td>
+          <td>VM Host</td>
+          <td>
+            <p>i5 4590</p>
+            <p>16GB DDR3</p>
+            <p>500GB HDD</p>
+            <p>EVGA 550B2 PSU</p>
+          </td>
+        </tr>
+        <tr>
+          <td>FreeNas</td>
+          <td>Hoth</td>
+          <td>NAS</td>
+          <td>
+            <p>i5 6500</p>
+            <p>24GB DDR4</p>
+            <p>4x2TB Seagate IronWolf HDD</p>
+            <p>EVGA 550B2 PSU</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Debian 8</td>
+          <td>Lumiere</td>
+          <td>Webserver (Hosting Kirkenjerk.us)</td>
+          <td>ESXi VM</td>
+        </tr>
+        <tr>
+          <td>Debian 8</td>
+          <td>Cogsworth</td>
+          <td>DNS Server</td>
+          <td>ESXi VM</td>
+        </tr>
+        <tr>
+          <td>Debian 8</td>
+          <td>Jafar</td>
+          <td>VPN</td>
+          <td>ESXi VM</td>
+        </tr>
+        <tr>
+          <td>Debian 8</td>
+          <td>Nemo</td>
+          <td>Plex Server</td>
+          <td>ESXi VM</td>
+        </tr>
+      </table>
+    </div>
+    </br>
+    </br>
+    <footer>
+      <div class="footer" id="footer">
+        <a href="https://github.com/Kirkenjerk">
+          <p><img class="imgfooter" src="images/github.svg"></img>
+          </p>
+        </a>
+        <p>Ryeley Kuykendall &copy; 2017, P.O. Box 12, Troy, NY, 12180. All rights reserved.</p>
+    </footer>
+
+
+</body>
+
+<script type="text/javascript" src="js/readmore.js"></script>
+
+</html>

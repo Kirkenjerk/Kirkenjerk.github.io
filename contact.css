@@ -1,0 +1,29 @@
+.contact {
+  text-align: center;
+  font-size: 16px;
+  float: 50%;
+  word-wrap: break-word;
+  line-height: 25px;
+  font-family: 'Questrial', sans-serif;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 200px
+}
+
+.form {
+  text-align: center;
+  padding-top: 35px;
+  font-family: 'Questrial', sans-serif;
+}
+
+.formtitle {
+  font-family: 'Questrial', sans-serif;
+  padding-top: 55px;
+  text-align: center;
+}
+
+.coninfo {
+  font-family: 'Questrial', sans-serif;
+  padding-top: 60px;
+  text-align: center;
+}

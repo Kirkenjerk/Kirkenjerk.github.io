@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
+@font-face {
+  font-family:'Questrial', sans-serif;
+}
+
+.purpose {
+  text-align: justify;
+  margin: 0 auto;
+  width: 50em;
+  font-family: 'Questrial', sans-serif;
+  padding-left: 25px;
+}
+
+.summary {
+  text-align: justify;
+  margin: 0 auto;
+  width: 50em;
+  font-family: 'Questrial', sans-serif;
+  padding-left: 25px;
+
+}
+
+.intro {
+  font-size: 16px;
+  width: 700px;
+  word-wrap: break-word;
+  line-height: 25px;
+
+}
+
+.quicksum {
+  font-size: 16px;
+  width: 700px;
+  word-wrap: break-word;
+  line-height: 25px;
+}
+
+.focus {
+  font-size: 16px;
+  width: 700px;
+  word-wrap: break-word;
+  line-height: 25px;
+}

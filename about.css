@@ -1,0 +1,35 @@
+.abtitle {
+  font-family: 'Questrial', sans-serif;
+  padding-top: 55px;
+  text-align: justify;
+  margin: 0 auto;
+  width: 50em;
+  padding-left: 25px;
+}
+
+.aboutme {
+  text-align: justify;
+  margin: 0 auto;
+  width: 50em;
+  font-size: 16px;
+  word-wrap: break-word;
+  line-height: 25px;
+  font-family: 'Questrial', sans-serif;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 200px
+}
+
+.engagement {
+  width: 33%;
+  height: 10%;
+  transform: rotate(90deg);
+}
+
+.engage_section {
+  text-align: center;
+}
+
+.player {
+  text-align: center;
+}​

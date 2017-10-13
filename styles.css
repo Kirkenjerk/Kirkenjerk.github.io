@@ -1,0 +1,64 @@
+/* Main Style sheet for the entire site
+
+Unlike the page specific style sheets this one controls the nav menu,
+site logo, and footer. This is so I do not have to continually add the following CSS to
+every stylesheet.
+
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+@font-face {
+  font-family: 'Questrial', sans-serif;
+}
+
+.logo {
+  float: left;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+html {
+  height: 100%;
+  margin: 0px;
+  background: url(images/graysolid.jpg) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.mentop li {
+  margin: 2%;
+  list-style-type: none;
+  display: inline;
+}
+
+.mentop a {
+  display: inline-block;
+  color: black;
+  padding: 35px 30px;
+  text-decoration: none;
+  font-family: 'Questrial', sans-serif;
+  font-size: 20px;
+}
+
+.mentop a:hover {
+  color: white;
+}
+
+.mentop a.active {
+  background-color: ;
+  color: white;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  font-family: 'Questrial', sans-serif;
+  padding-top: 5%;
+}
+
+.imgfooter {
+  width:30px;
+	max-width:100%;
+	height:30px;
+}
