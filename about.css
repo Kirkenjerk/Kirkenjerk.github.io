@@ -23,7 +23,7 @@
 .engagement {
   width: 33%;
   height: 10%;
-  transform: rotate(90deg);
+  /*transform: rotate(90deg);*/
 }
 
 .engage_section {
